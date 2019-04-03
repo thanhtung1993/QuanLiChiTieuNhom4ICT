@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.quanlychitieu.Database.DatabaseLoaiChi;
-import com.example.quanlychitieu.Model.LoaiChi;
+import com.example.quanlychitieu.Model.ModelLoaiChi;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -45,14 +45,14 @@ public void onClick(View view) {
 
 public class LoaiChiAdapter  extends RecyclerView.Adapter<LoaiChiViewHolder>{
 
-    private List<LoaiChi> listData= new ArrayList<>();
+    private List<ModelLoaiChi> listData= new ArrayList<>();
     private Context context;
     LoaiChiAdapter loaiChiAdapter=this;
 
     DatabaseLoaiChi databaseLoaiChi;
 
 
-    public LoaiChiAdapter(List<LoaiChi> listData, Context context) {
+    public LoaiChiAdapter(List<ModelLoaiChi> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }
@@ -86,7 +86,7 @@ public class LoaiChiAdapter  extends RecyclerView.Adapter<LoaiChiViewHolder>{
     }
 
     private void ShowDialog(int position) {
-        final LoaiChi loaiChi=listData.get(position);
+        final ModelLoaiChi modelLoaiChi =listData.get(position);
         final EditText editName;
         Button btnEdit,btnHuy;
         final Dialog add_edit_layout=new Dialog(context);
@@ -99,14 +99,14 @@ public class LoaiChiAdapter  extends RecyclerView.Adapter<LoaiChiViewHolder>{
         btnEdit=add_edit_layout.findViewById(R.id.btnEdit);
         btnHuy=add_edit_layout.findViewById(R.id.btnCancel);
         editName=add_edit_layout.findViewById(R.id.edtNameEdit);
-        editName.setText(loaiChi.getTenLoaiChi());
+        editName.setText(modelLoaiChi.getTenLoaiChi());
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                loaiChi.setTenLoaiChi(editName.getText().toString());
-                boolean check=databaseLoaiChi.UpdateLoaiChi(loaiChi);
+                modelLoaiChi.setTenLoaiChi(editName.getText().toString());
+                boolean check=databaseLoaiChi.UpdateLoaiChi(modelLoaiChi);
                 if(check)
                 {
                     Toast.makeText(context, "Item Edited", Toast.LENGTH_SHORT).show();

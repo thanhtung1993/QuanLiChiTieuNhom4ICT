@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.quanlychitieu.Model.KhoangChi;
+import com.example.quanlychitieu.Model.ModelKhoanChi;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ class KhoanChiViewHolder extends RecyclerView.ViewHolder implements View.OnClick
 
 
     public TextView txt_KhoangThu,txt_SoTien,txtNgay;
-    public List<KhoangChi> list=new ArrayList<>();
+    public List<ModelKhoanChi> list=new ArrayList<>();
     public Context context;
 
-    public KhoanChiViewHolder(View itemView,Context context,List<KhoangChi> list) {
+    public KhoanChiViewHolder(View itemView,Context context,List<ModelKhoanChi> list) {
         super(itemView);
         this.list=list;
         this.context=context;
@@ -39,10 +39,10 @@ class KhoanChiViewHolder extends RecyclerView.ViewHolder implements View.OnClick
 }
 public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiViewHolder>{
 
-    private List<KhoangChi> listData= new ArrayList<>();
+    private List<ModelKhoanChi> listData= new ArrayList<>();
     private Context context;
 
-    public KhoanChiAdapter(List<KhoangChi> listData, Context context) {
+    public KhoanChiAdapter(List<ModelKhoanChi> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }

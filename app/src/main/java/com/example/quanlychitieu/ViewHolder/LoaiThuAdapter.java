@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 import com.example.quanlychitieu.Database.DatabaseLoaiThu;
-import com.example.quanlychitieu.Model.LoaiThu;
+import com.example.quanlychitieu.Model.ModelLoaiThu;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -43,11 +43,11 @@ class LoaiThuViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
 public class LoaiThuAdapter  extends RecyclerView.Adapter<LoaiThuViewHolder>{
 
-    private List<LoaiThu> listData= new ArrayList<>();
+    private List<ModelLoaiThu> listData= new ArrayList<>();
     private Context context;
     LoaiThuAdapter loaiThuAdapter=this;
     DatabaseLoaiThu databaseLoaiThu;
-    public LoaiThuAdapter(List<LoaiThu> listData, Context context) {
+    public LoaiThuAdapter(List<ModelLoaiThu> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }
@@ -85,7 +85,7 @@ public class LoaiThuAdapter  extends RecyclerView.Adapter<LoaiThuViewHolder>{
     }
 
     private void ShowDialog(final int position) {
-        final LoaiThu loaiThu=listData.get(position);
+        final ModelLoaiThu modelLoaiThu =listData.get(position);
         final EditText editName;
         Button btnEdit,btnHuy;
         final Dialog add_edit_layout=new Dialog(context);
@@ -98,14 +98,14 @@ public class LoaiThuAdapter  extends RecyclerView.Adapter<LoaiThuViewHolder>{
         btnEdit=add_edit_layout.findViewById(R.id.btnEdit);
         btnHuy=add_edit_layout.findViewById(R.id.btnCancel);
         editName=add_edit_layout.findViewById(R.id.edtNameEdit);
-        editName.setText(loaiThu.getTenLoaiThu());
+        editName.setText(modelLoaiThu.getTenLoaiThu());
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                loaiThu.setTenLoaiThu(editName.getText().toString());
-                boolean check=databaseLoaiThu.UpdateLoaiThu(loaiThu);
+                modelLoaiThu.setTenLoaiThu(editName.getText().toString());
+                boolean check=databaseLoaiThu.UpdateLoaiThu(modelLoaiThu);
                 if(check)
                 {
                     Toast.makeText(context, "Item Edited", Toast.LENGTH_SHORT).show();

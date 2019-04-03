@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
-import com.example.quanlychitieu.Model.KhoangChi;
+import com.example.quanlychitieu.Model.ModelKhoanChi;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,57 +39,57 @@ public class DatabaseKhoanChi {
     public static String ThisMonth="SELECT * FROM "+CreateDatabase.TB_KHOANCHI+" WHERE strftime('%Y',"+CreateDatabase.TB_KHOANCHI_NGAY+") = strftime('%Y',date('now')) " +
             "AND  strftime('%m',"+CreateDatabase.TB_KHOANCHI_NGAY+") = strftime('%m',date('now'))";
 
-    public long AddKhoancHI(KhoangChi khoangChi)
+    public long AddKhoancHI(ModelKhoanChi modelKhoanChi)
     {
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_KHOANCHI_NGAY,khoangChi.getNgayChi());
-        contentValues.put(CreateDatabase.TB_KHOANCHI_TAIKHOAN,khoangChi.getTaiKhoanChi());
-        contentValues.put(CreateDatabase.TB_KHOANCHI_SOTIEN,khoangChi.getSoTienChi());
-        contentValues.put(CreateDatabase.TB_KHOANCHI_MOTA,khoangChi.getMoTaChi());
-        contentValues.put(CreateDatabase.TB_KHOANCHI_LOAICHI,khoangChi.getLoaiChi());
+        contentValues.put(CreateDatabase.TB_KHOANCHI_NGAY, modelKhoanChi.getNgayChi());
+        contentValues.put(CreateDatabase.TB_KHOANCHI_TAIKHOAN, modelKhoanChi.getTaiKhoanChi());
+        contentValues.put(CreateDatabase.TB_KHOANCHI_SOTIEN, modelKhoanChi.getSoTienChi());
+        contentValues.put(CreateDatabase.TB_KHOANCHI_MOTA, modelKhoanChi.getMoTaChi());
+        contentValues.put(CreateDatabase.TB_KHOANCHI_LOAICHI, modelKhoanChi.getLoaiChi());
 
         long check=database.insert(CreateDatabase.TB_KHOANCHI,null,contentValues);
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<KhoangChi> getKhoangChi(){
+    public List<ModelKhoanChi> getKhoangChi(){
 
-        List<KhoangChi> list=new ArrayList<>();
+        List<ModelKhoanChi> modelKhoanChiList=new ArrayList<>();
 
         String TruyVan=" SELECT * FROM " + CreateDatabase.TB_KHOANCHI;
 
         Cursor cursor=database.rawQuery(TruyVan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            KhoangChi khoangChi=new KhoangChi();
-            khoangChi.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_ID)));
-            khoangChi.setNgayChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_NGAY)));
-            khoangChi.setLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_LOAICHI)));
-            khoangChi.setMoTaChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_MOTA)));
-            khoangChi.setSoTienChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_SOTIEN)));
-            khoangChi.setTaiKhoanChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_TAIKHOAN)));
-            list.add(khoangChi);
+            ModelKhoanChi modelKhoanChi =new ModelKhoanChi();
+            modelKhoanChi.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_ID)));
+            modelKhoanChi.setNgayChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_NGAY)));
+            modelKhoanChi.setLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_LOAICHI)));
+            modelKhoanChi.setMoTaChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_MOTA)));
+            modelKhoanChi.setSoTienChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_SOTIEN)));
+            modelKhoanChi.setTaiKhoanChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_TAIKHOAN)));
+            modelKhoanChiList.add(modelKhoanChi);
             cursor.moveToNext();
         }
-        //Log.d("checkNao", String.valueOf(list));
-        return list;
+        Log.d("kiemtra", String.valueOf(modelKhoanChiList));
+        return modelKhoanChiList;
     }
 
-    public List<KhoangChi> getKhoangChiTheoNgayThangNam(String truyvan){
+    public List<ModelKhoanChi> getKhoangChiTheoNgayThangNam(String truyvan){
 
-        List<KhoangChi> list=new ArrayList<>();
+        List<ModelKhoanChi> list=new ArrayList<>();
         Cursor cursor=database.rawQuery(truyvan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            KhoangChi khoangChi=new KhoangChi();
-            khoangChi.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_ID)));
-            khoangChi.setNgayChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_NGAY)));
-            khoangChi.setLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_LOAICHI)));
-            khoangChi.setMoTaChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_MOTA)));
-            khoangChi.setSoTienChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_SOTIEN)));
-            khoangChi.setTaiKhoanChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_TAIKHOAN)));
-            list.add(khoangChi);
+            ModelKhoanChi modelKhoanChi =new ModelKhoanChi();
+            modelKhoanChi.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_ID)));
+            modelKhoanChi.setNgayChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_NGAY)));
+            modelKhoanChi.setLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_LOAICHI)));
+            modelKhoanChi.setMoTaChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_MOTA)));
+            modelKhoanChi.setSoTienChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_SOTIEN)));
+            modelKhoanChi.setTaiKhoanChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANCHI_TAIKHOAN)));
+            list.add(modelKhoanChi);
             cursor.moveToNext();
         }
         //Log.d("checkNao", String.valueOf(list));
@@ -102,4 +102,6 @@ public class DatabaseKhoanChi {
         String currentDate = sdf.format(calendar.getTime());
         return currentDate;
     }
+
+
 }

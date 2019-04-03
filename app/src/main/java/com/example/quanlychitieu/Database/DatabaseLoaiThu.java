@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
-import com.example.quanlychitieu.Model.LoaiThu;
+import com.example.quanlychitieu.Model.ModelLoaiThu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,38 +25,38 @@ public class DatabaseLoaiThu  {
         database=createDatabase.Open();
     }
 
-    public long AddItem(LoaiThu loaiThu)
+    public long AddItem(ModelLoaiThu modelLoaiThu)
     {
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_LOAITHU_NAMELOAITHU,loaiThu.getTenLoaiThu());
+        contentValues.put(CreateDatabase.TB_LOAITHU_NAMELOAITHU, modelLoaiThu.getTenLoaiThu());
         long check=database.insert(CreateDatabase.TB_LOAITHU,null,contentValues);
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<LoaiThu> getLoaiThu(){
+    public List<ModelLoaiThu> getLoaiThu(){
 
-        List<LoaiThu> list=new ArrayList<>();
+        List<ModelLoaiThu> list=new ArrayList<>();
 
         String TruyVan=" SELECT * FROM " + CreateDatabase.TB_LOAITHU;
 
         Cursor cursor=database.rawQuery(TruyVan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            LoaiThu loaiThu=new LoaiThu();
-            loaiThu.setIdLoaiThu(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_LOAITHU_ID)));
-            loaiThu.setTenLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_LOAITHU_NAMELOAITHU)));
-            list.add(loaiThu);
+            ModelLoaiThu modelLoaiThu =new ModelLoaiThu();
+            modelLoaiThu.setIdLoaiThu(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_LOAITHU_ID)));
+            modelLoaiThu.setTenLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_LOAITHU_NAMELOAITHU)));
+            list.add(modelLoaiThu);
             cursor.moveToNext();
         }
         Log.d("checkNao", String.valueOf(list));
         return list;
     }
-    public boolean UpdateLoaiThu(LoaiThu loaiThu){
+    public boolean UpdateLoaiThu(ModelLoaiThu modelLoaiThu){
 
         ContentValues contentValues=new ContentValues();
-        contentValues.put(CreateDatabase.TB_LOAITHU_NAMELOAITHU,loaiThu.getTenLoaiThu());
-        long check=database.update(CreateDatabase.TB_LOAITHU,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " +loaiThu.getIdLoaiThu(),null);
+        contentValues.put(CreateDatabase.TB_LOAITHU_NAMELOAITHU, modelLoaiThu.getTenLoaiThu());
+        long check=database.update(CreateDatabase.TB_LOAITHU,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " + modelLoaiThu.getIdLoaiThu(),null);
         if(check !=0){
             return true;
         }else {

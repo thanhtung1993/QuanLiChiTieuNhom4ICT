@@ -2,22 +2,22 @@ package com.example.quanlychitieu.Model;
 
 
 
-public class LoaiThu {
+public class ModelLoaiThu {
 
     int idLoaiThu;
     String TenLoaiThu;
 
-    public LoaiThu(int idLoaiThu, String tenLoaiThu) {
+    public ModelLoaiThu(int idLoaiThu, String tenLoaiThu) {
         this.idLoaiThu = idLoaiThu;
         TenLoaiThu = tenLoaiThu;
     }
-    public LoaiThu(String tenLoaiThu) {
+    public ModelLoaiThu(String tenLoaiThu) {
         this.idLoaiThu = idLoaiThu;
         TenLoaiThu = tenLoaiThu;
     }
 
 
-    public LoaiThu() {
+    public ModelLoaiThu() {
     }
 
     public int getIdLoaiThu() {

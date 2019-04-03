@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.quanlychitieu.Database.DatabaseLoaiChi;
-import com.example.quanlychitieu.Model.LoaiChi;
+import com.example.quanlychitieu.Model.ModelLoaiChi;
 import com.example.quanlychitieu.R;
 import com.example.quanlychitieu.ViewHolder.LoaiChiAdapter;
 
@@ -35,7 +35,7 @@ public class LoaiChiFragment extends Fragment {
 
     DatabaseLoaiChi databaseLoaiChi;
 
-    List<LoaiChi> listdata;
+    List<ModelLoaiChi> listdata;
     LoaiChiAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -92,8 +92,8 @@ public class LoaiChiFragment extends Fragment {
     }
 
     private void AddNew() {
-        LoaiChi loaiChi=new LoaiChi(edtName.getText().toString());
-        long check=databaseLoaiChi.AddItem(loaiChi);
+        ModelLoaiChi modelLoaiChi =new ModelLoaiChi(edtName.getText().toString());
+        long check=databaseLoaiChi.AddItem(modelLoaiChi);
         if(check>0){
             Toast.makeText(getContext(), "Thành Công", Toast.LENGTH_SHORT).show();
             LoadDataLoaiChi();

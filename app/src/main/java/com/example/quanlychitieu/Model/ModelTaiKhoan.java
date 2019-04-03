@@ -2,21 +2,21 @@ package com.example.quanlychitieu.Model;
 
 
 
-public class TaiKhoan {
+public class ModelTaiKhoan {
 
     int id;
     String TenTaiKhoan,SoTienTaiKhoan;
 
-    public TaiKhoan() {
+    public ModelTaiKhoan() {
     }
 
-    public TaiKhoan(int id, String tenTaiKhoan, String soTienTaiKhoan) {
+    public ModelTaiKhoan(int id, String tenTaiKhoan, String soTienTaiKhoan) {
         this.id = id;
         TenTaiKhoan = tenTaiKhoan;
         SoTienTaiKhoan = soTienTaiKhoan;
     }
 
-    public TaiKhoan(String tenTaiKhoan, String soTienTaiKhoan) {
+    public ModelTaiKhoan(String tenTaiKhoan, String soTienTaiKhoan) {
         TenTaiKhoan = tenTaiKhoan;
         SoTienTaiKhoan = soTienTaiKhoan;
     }

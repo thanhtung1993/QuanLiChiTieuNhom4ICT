@@ -1,6 +1,5 @@
 package com.example.quanlychitieu;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +11,9 @@ import android.view.ViewGroup;
 import com.example.quanlychitieu.Database.DatabaseKhoanChi;
 import com.example.quanlychitieu.Database.DatabaseKhoanThu;
 import com.example.quanlychitieu.Database.DatabaseTaiKhoan;
-import com.example.quanlychitieu.Model.KhoangChi;
-import com.example.quanlychitieu.Model.KhoangThu;
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelKhoanChi;
+import com.example.quanlychitieu.Model.ModelKhoanThu;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 
 
 
@@ -26,9 +25,9 @@ public class ThisYearActitvity extends Fragment {
     DatabaseKhoanChi databaseKhoanChi;
     DatabaseKhoanThu databaseKhoanThu;
     DatabaseTaiKhoan databaseTaiKhoan;
-    List<KhoangThu> listTodayThu;
-    List<KhoangChi> listTodayChi;
-    List<TaiKhoan> listTaiKhoan;
+    List<ModelKhoanThu> listTodayThu;
+    List<ModelKhoanChi> listTodayChi;
+    List<ModelTaiKhoan> listModelTaiKhoan;
    // private PieChart mChart;
     private float TongThuChiCu,TongThuChiMoi,TongThuChi,tongChi,tongThu;
 
@@ -49,22 +48,22 @@ public class ThisYearActitvity extends Fragment {
         databaseTaiKhoan=new DatabaseTaiKhoan(getContext());
         listTodayThu=new ArrayList<>();
         listTodayChi=new ArrayList<>();
-        listTaiKhoan=new ArrayList<>();
+        listModelTaiKhoan =new ArrayList<>();
        // mChart=view.findViewById(R.id.chartYear);
 
         tongThu=0;
         listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.ThisYear);
         Log.d("Year Khoản Thu", String.valueOf(listTodayThu.size()));
-        for (KhoangThu khoangThu: listTodayThu){
-            tongThu+=(Float.parseFloat(khoangThu.getSoTien()));
+        for (ModelKhoanThu modelKhoanThu : listTodayThu){
+            tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
         listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.ThisYear);
         Log.d("Year Khoản Chi",listTodayChi.size()+"");
-        for (KhoangChi khoangChi: listTodayChi){
+        for (ModelKhoanChi modelKhoanChi : listTodayChi){
 
-            tongChi+=(Float.parseFloat(khoangChi.getSoTienChi()));
+            tongChi+=(Float.parseFloat(modelKhoanChi.getSoTienChi()));
         }
         TongThuChi=0;
      //  mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {

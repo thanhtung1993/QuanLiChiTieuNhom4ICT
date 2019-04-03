@@ -24,9 +24,9 @@ import android.widget.Toast;
 import com.example.quanlychitieu.Database.DatabaseKhoanChi;
 import com.example.quanlychitieu.Database.DatabaseLoaiChi;
 import com.example.quanlychitieu.Database.DatabaseTaiKhoan;
-import com.example.quanlychitieu.Model.KhoangChi;
-import com.example.quanlychitieu.Model.LoaiChi;
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelKhoanChi;
+import com.example.quanlychitieu.Model.ModelLoaiChi;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 import com.example.quanlychitieu.R;
 import com.example.quanlychitieu.ViewHolder.AdapterSpinnerChi;
 import com.example.quanlychitieu.ViewHolder.AdaterSpinnerTenTaiKhoan;
@@ -56,11 +56,11 @@ public class KhoanChiFragment extends Fragment {
     TextView txtBatLoi;
     DatabaseLoaiChi databaseLoaiChi;
     DatabaseKhoanChi databaseKhoanChi;
-    List<LoaiChi> listdata;
-    List<KhoangChi> listKhoanChi;
+    List<ModelLoaiChi> listdata;
+    List<ModelKhoanChi> listModelKhoanChi;
     KhoanChiAdapter apdater;
     AdapterSpinnerChi adapterSpinnerChi;
-    List<TaiKhoan> listTaiKhoan;
+    List<ModelTaiKhoan> listModelTaiKhoan;
     DatabaseTaiKhoan databaseTaiKhoan;
     AdaterSpinnerTenTaiKhoan adapterTenTaiKhoan;
     int pos=0;
@@ -85,17 +85,17 @@ public class KhoanChiFragment extends Fragment {
         recyclerView_KhoangChi.setLayoutManager(layoutManager);
         btnFabKhoanChi=view.findViewById(R.id.fabkhoanthu);
         listdata=new ArrayList<>();
-        listTaiKhoan=new ArrayList<>();
-        listKhoanChi=new ArrayList<>();
+        listModelTaiKhoan =new ArrayList<>();
+        listModelKhoanChi =new ArrayList<>();
 
-        listTaiKhoan=databaseTaiKhoan.getTaiKhoan();
+        listModelTaiKhoan =databaseTaiKhoan.getTaiKhoan();
         listdata=databaseLoaiChi.getLoaiChi();
 
         btnFabKhoanChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (listTaiKhoan.size()<=0 || listdata.size()<=0)
+                if (listModelTaiKhoan.size()<=0 || listdata.size()<=0)
                     txtBatLoi.setVisibility(View.VISIBLE);
                 else
                 ShowDialog();
@@ -125,14 +125,14 @@ public class KhoanChiFragment extends Fragment {
         edtMoTa=view_Add.findViewById(R.id.edtMota);
 
 
-        adapterTenTaiKhoan=new AdaterSpinnerTenTaiKhoan(getContext(),R.layout.item_spinner_taikhoan,listTaiKhoan);
+        adapterTenTaiKhoan=new AdaterSpinnerTenTaiKhoan(getContext(),R.layout.item_spinner_taikhoan, listModelTaiKhoan);
         TaikhoanSp.setAdapter(adapterTenTaiKhoan);
         adapterTenTaiKhoan.notifyDataSetChanged();
 
         TaikhoanSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                pos=listTaiKhoan.get(position).getId();
+                pos= listModelTaiKhoan.get(position).getId();
             }
 
             @Override
@@ -174,7 +174,7 @@ public class KhoanChiFragment extends Fragment {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                KhoangChi khoangChi=new KhoangChi();
+                ModelKhoanChi modelKhoanChi =new ModelKhoanChi();
 
                 String Ngay=btnNgay.getText().toString();
                 String TaiKhoan=TaikhoanSp.getSelectedItem().toString();
@@ -182,11 +182,11 @@ public class KhoanChiFragment extends Fragment {
                 String MoTa=edtMoTa.getText().toString();
                 final String LoaiThu=LoaiThuSp.getSelectedItem().toString();
 
-                khoangChi.setNgayChi(Ngay);
-                khoangChi.setTaiKhoanChi(TaiKhoan);
-                khoangChi.setSoTienChi(SoTien);
-                khoangChi.setMoTaChi(MoTa);
-                khoangChi.setLoaiChi(LoaiThu);
+                modelKhoanChi.setNgayChi(Ngay);
+                modelKhoanChi.setTaiKhoanChi(TaiKhoan);
+                modelKhoanChi.setSoTienChi(SoTien);
+                modelKhoanChi.setMoTaChi(MoTa);
+                modelKhoanChi.setLoaiChi(LoaiThu);
 
                 if(Ngay.equals("Chọn Ngày") || Ngay==null){
                     err=false;
@@ -199,9 +199,9 @@ public class KhoanChiFragment extends Fragment {
                     Toast.makeText(getContext(), "Vui Lòng Nhập Số Tiền", Toast.LENGTH_SHORT).show();
                 }
                 if(err==true){
-                    long check=databaseKhoanChi.AddKhoancHI(khoangChi);
+                    long check=databaseKhoanChi.AddKhoancHI(modelKhoanChi);
                     if (check>0) {
-                        for (final TaiKhoan tk : listTaiKhoan) {
+                        for (final ModelTaiKhoan tk : listModelTaiKhoan) {
                             if (tk.getId() == pos) {
 
                                 t = Integer.parseInt(tk.getSoTienTaiKhoan()) - Integer.parseInt(edtSoTien.getText().toString());
@@ -223,8 +223,8 @@ public class KhoanChiFragment extends Fragment {
 
 
     private void LoadListKhoanChi() {
-        listKhoanChi=databaseKhoanChi.getKhoangChi();
-        apdater=new KhoanChiAdapter(listKhoanChi,getContext());
+        listModelKhoanChi =databaseKhoanChi.getKhoangChi();
+        apdater=new KhoanChiAdapter(listModelKhoanChi,getContext());
         recyclerView_KhoangChi.setAdapter(apdater);
         apdater.notifyDataSetChanged();
         NumberFormat fmt;
@@ -232,8 +232,8 @@ public class KhoanChiFragment extends Fragment {
         locale = new Locale("vi", "VN");
         fmt = NumberFormat.getCurrencyInstance(locale);
         int total=0;
-        for (KhoangChi khoangChi: listKhoanChi){
-            total+=(Integer.parseInt(khoangChi.getSoTienChi()));
+        for (ModelKhoanChi modelKhoanChi : listModelKhoanChi){
+            total+=(Integer.parseInt(modelKhoanChi.getSoTienChi()));
 
         }
         txtTongChi.setText(fmt.format(total));

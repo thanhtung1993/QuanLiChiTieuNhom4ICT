@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -27,10 +27,10 @@ class TaiKhoanViewHolder extends RecyclerView.ViewHolder {
 }
 public class AdapterTaiKhoan extends RecyclerView.Adapter<TaiKhoanViewHolder>{
 
-    private List<TaiKhoan> listdata=new ArrayList<>();
+    private List<ModelTaiKhoan> listdata=new ArrayList<>();
     private Context context;
 
-    public AdapterTaiKhoan(List<TaiKhoan> listdata, Context context) {
+    public AdapterTaiKhoan(List<ModelTaiKhoan> listdata, Context context) {
         this.listdata = listdata;
         this.context = context;
     }

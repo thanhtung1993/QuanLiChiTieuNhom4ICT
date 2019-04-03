@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.quanlychitieu.ItemOnClickListener;
 import com.example.quanlychitieu.KhoangThuChiTietActivity;
-import com.example.quanlychitieu.Model.KhoangThu;
+import com.example.quanlychitieu.Model.ModelKhoanThu;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -21,11 +21,11 @@ import java.util.List;
 class KhoanThuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView txt_KhoangThu,txt_SoTien,txtNgay;
-    public List<KhoangThu> thuList=new ArrayList<>();
+    public List<ModelKhoanThu> thuList=new ArrayList<>();
     public Context context;
     private ItemOnClickListener itemOnClickListener;
 
-    public KhoanThuViewHolder(View itemView,Context context,List<KhoangThu> list) {
+    public KhoanThuViewHolder(View itemView,Context context,List<ModelKhoanThu> list) {
         super(itemView);
         this.thuList=list;
         this.context=context;
@@ -44,13 +44,13 @@ class KhoanThuViewHolder extends RecyclerView.ViewHolder implements View.OnClick
     public void onClick(View view) {
 //        itemOnClickListener.onClick(view,getAdapterPosition(),false);
         int position= getAdapterPosition();
-        KhoangThu khoangThu=thuList.get(position);
+        ModelKhoanThu modelKhoanThu =thuList.get(position);
         Intent intent=new Intent(this.context, KhoangThuChiTietActivity.class);
-        intent.putExtra("ngay",khoangThu.getNgay());
-        intent.putExtra("taikhoan",khoangThu.getTaiKhoan());
-        intent.putExtra("sotien",khoangThu.getSoTien());
-        intent.putExtra("mota",khoangThu.getMoTa());
-        intent.putExtra("loaithu",khoangThu.getLoaiThu());
+        intent.putExtra("ngay", modelKhoanThu.getNgay());
+        intent.putExtra("taikhoan", modelKhoanThu.getTaiKhoan());
+        intent.putExtra("sotien", modelKhoanThu.getSoTien());
+        intent.putExtra("mota", modelKhoanThu.getMoTa());
+        intent.putExtra("loaithu", modelKhoanThu.getLoaiThu());
         context.startActivity(intent);
 
     }
@@ -58,10 +58,10 @@ class KhoanThuViewHolder extends RecyclerView.ViewHolder implements View.OnClick
 
 public class KhoanThuApdater  extends RecyclerView.Adapter<KhoanThuViewHolder>{
 
-    private List<KhoangThu> listData= new ArrayList<>();
+    private List<ModelKhoanThu> listData= new ArrayList<>();
     private Context context;
 
-    public KhoanThuApdater(List<KhoangThu> listData, Context context) {
+    public KhoanThuApdater(List<ModelKhoanThu> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }

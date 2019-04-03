@@ -11,21 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-import com.example.quanlychitieu.Model.LoaiThu;
+import com.example.quanlychitieu.Model.ModelLoaiThu;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterSpinner extends ArrayAdapter<LoaiThu> {
+public class AdapterSpinner extends ArrayAdapter<ModelLoaiThu> {
 
-    public List<LoaiThu> listData= new ArrayList<>();
+    public List<ModelLoaiThu> listData= new ArrayList<>();
     public Context context;
     public int resource;
 
 
-    public AdapterSpinner(@NonNull Context context, int resource, @NonNull List<LoaiThu> objects) {
+    public AdapterSpinner(@NonNull Context context, int resource, @NonNull List<ModelLoaiThu> objects) {
         super(context, resource, objects);
         this.context=context;
         this.resource=resource;

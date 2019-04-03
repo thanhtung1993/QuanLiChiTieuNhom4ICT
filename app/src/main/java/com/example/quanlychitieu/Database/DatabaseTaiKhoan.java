@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class DatabaseTaiKhoan {
         database=createDatabase.Open();
     }
 
-    public long ThemTaiKhoan(TaiKhoan taiKhoan){
+    public long ThemTaiKhoan(ModelTaiKhoan modelTaiKhoan){
 
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_TAIKHOAN_NAME,taiKhoan.getTenTaiKhoan());
+        contentValues.put(CreateDatabase.TB_TAIKHOAN_NAME, modelTaiKhoan.getTenTaiKhoan());
 
-        contentValues.put(CreateDatabase.TB_TAIKHOAN_SOTIEN,taiKhoan.getSoTienTaiKhoan());
+        contentValues.put(CreateDatabase.TB_TAIKHOAN_SOTIEN, modelTaiKhoan.getSoTienTaiKhoan());
 
 
         long check=database.insert(CreateDatabase.TB_TAIKHOAN,null,contentValues);
@@ -37,33 +37,33 @@ public class DatabaseTaiKhoan {
         return check;
     }
 
-    public List<TaiKhoan> getTaiKhoan(){
+    public List<ModelTaiKhoan> getTaiKhoan(){
 
-        List<TaiKhoan> list=new ArrayList<>();
+        List<ModelTaiKhoan> list=new ArrayList<>();
 
         String TruyVan=" SELECT * FROM " + CreateDatabase.TB_TAIKHOAN;
 
         Cursor cursor=database.rawQuery(TruyVan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            TaiKhoan taiKhoan=new TaiKhoan();
-            taiKhoan.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_ID)));
-            taiKhoan.setTenTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_NAME)));
-            taiKhoan.setSoTienTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_SOTIEN)));
-            list.add(taiKhoan);
+            ModelTaiKhoan modelTaiKhoan =new ModelTaiKhoan();
+            modelTaiKhoan.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_ID)));
+            modelTaiKhoan.setTenTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_NAME)));
+            modelTaiKhoan.setSoTienTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_TAIKHOAN_SOTIEN)));
+            list.add(modelTaiKhoan);
             cursor.moveToNext();
         }
         //Log.d("checkNao", String.valueOf(list));
         return list;
     }
 
-    public boolean UpdateLoaiThu(TaiKhoan taiKhoan){
+    public boolean UpdateLoaiThu(ModelTaiKhoan modelTaiKhoan){
 
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_TAIKHOAN_SOTIEN,taiKhoan.getSoTienTaiKhoan());
+        contentValues.put(CreateDatabase.TB_TAIKHOAN_SOTIEN, modelTaiKhoan.getSoTienTaiKhoan());
 
-        long check=database.update(CreateDatabase.TB_TAIKHOAN,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " +taiKhoan.getId(),null);
+        long check=database.update(CreateDatabase.TB_TAIKHOAN,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " + modelTaiKhoan.getId(),null);
 
         if(check !=0){
             return true;

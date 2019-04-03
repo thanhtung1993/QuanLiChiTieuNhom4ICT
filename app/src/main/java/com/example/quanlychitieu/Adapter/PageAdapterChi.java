@@ -39,7 +39,7 @@ public class PageAdapterChi extends FragmentStatePagerAdapter {
         return frag;
     }
 
-    
+
     @Override
     public int getCount() {
         return 2;

@@ -1,6 +1,5 @@
 package com.example.quanlychitieu;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,14 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.quanlychitieu.Database.DatabaseKhoanChi;
 import com.example.quanlychitieu.Database.DatabaseKhoanThu;
 import com.example.quanlychitieu.Database.DatabaseTaiKhoan;
-import com.example.quanlychitieu.Model.KhoangChi;
-import com.example.quanlychitieu.Model.KhoangThu;
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelKhoanChi;
+import com.example.quanlychitieu.Model.ModelKhoanThu;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +22,9 @@ public class ThisWeekActivity extends Fragment {
     DatabaseKhoanChi databaseKhoanChi;
     DatabaseKhoanThu databaseKhoanThu;
     DatabaseTaiKhoan databaseTaiKhoan;
-    List<KhoangThu> listTodayThu;
-    List<KhoangChi> listTodayChi;
-    List<TaiKhoan> listTaiKhoan;
+    List<ModelKhoanThu> listTodayThu;
+    List<ModelKhoanChi> listTodayChi;
+    List<ModelTaiKhoan> listModelTaiKhoan;
    // private PieChart mChart;
     private float TongThuChiCu,TongThuChiMoi,TongThuChi,tongChi,tongThu;
 
@@ -47,29 +45,29 @@ public class ThisWeekActivity extends Fragment {
         databaseTaiKhoan=new DatabaseTaiKhoan(getContext());
         listTodayThu=new ArrayList<>();
         listTodayChi=new ArrayList<>();
-        listTaiKhoan=new ArrayList<>();
+        listModelTaiKhoan =new ArrayList<>();
       //  mChart=view.findViewById(R.id.chartWeek);
 
         tongThu=0;
         listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.ThisWeek);
         Log.d("Week Khoản Thu", String.valueOf(listTodayThu.size()));
-        for (KhoangThu khoangThu: listTodayThu){
-            tongThu+=(Float.parseFloat(khoangThu.getSoTien()));
+        for (ModelKhoanThu modelKhoanThu : listTodayThu){
+            tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
         listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.ThisWeek);
         Log.d("Week Khoản Chi", String.valueOf(listTodayChi.size()));
-        for (KhoangChi khoangChi: listTodayChi){
+        for (ModelKhoanChi modelKhoanChi : listTodayChi){
 
-            tongChi+=(Float.parseFloat(khoangChi.getSoTienChi()));
+            tongChi+=(Float.parseFloat(modelKhoanChi.getSoTienChi()));
         }
         TongThuChi=0;
 
-        listTaiKhoan=databaseTaiKhoan.getTaiKhoan();
-        for (TaiKhoan taiKhoan:listTaiKhoan)
+        listModelTaiKhoan =databaseTaiKhoan.getTaiKhoan();
+        for (ModelTaiKhoan modelTaiKhoan : listModelTaiKhoan)
         {
-            TongThuChi+=Float.parseFloat(taiKhoan.getSoTienTaiKhoan());
+            TongThuChi+=Float.parseFloat(modelTaiKhoan.getSoTienTaiKhoan());
 
         }
 

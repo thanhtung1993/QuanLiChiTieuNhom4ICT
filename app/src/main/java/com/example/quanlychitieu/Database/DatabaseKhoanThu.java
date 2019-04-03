@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
-import com.example.quanlychitieu.Model.KhoangThu;
+import com.example.quanlychitieu.Model.ModelKhoanThu;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,57 +39,57 @@ public class DatabaseKhoanThu  {
 
 
 
-    public long AddKhoanThu(KhoangThu khoangThu)
+    public long AddKhoanThu(ModelKhoanThu modelKhoanThu)
     {
         ContentValues contentValues=new ContentValues();
-        contentValues.put(CreateDatabase.TB_KHOANTHU_NGAY,khoangThu.getNgay());
-        contentValues.put(CreateDatabase.TB_KHOANTHU_TAIKHOAN,khoangThu.getTaiKhoan());
-        contentValues.put(CreateDatabase.TB_KHOANTHU_SOTIEN,khoangThu.getSoTien());
-        contentValues.put(CreateDatabase.TB_KHOANTHU_MOTA,khoangThu.getMoTa());
-        contentValues.put(CreateDatabase.TB_KHOANTHU_LOAITHU,khoangThu.getLoaiThu());
+        contentValues.put(CreateDatabase.TB_KHOANTHU_NGAY, modelKhoanThu.getNgay());
+        contentValues.put(CreateDatabase.TB_KHOANTHU_TAIKHOAN, modelKhoanThu.getTaiKhoan());
+        contentValues.put(CreateDatabase.TB_KHOANTHU_SOTIEN, modelKhoanThu.getSoTien());
+        contentValues.put(CreateDatabase.TB_KHOANTHU_MOTA, modelKhoanThu.getMoTa());
+        contentValues.put(CreateDatabase.TB_KHOANTHU_LOAITHU, modelKhoanThu.getLoaiThu());
         long check=database.insert(CreateDatabase.TB_KHOANTHU,null,contentValues);
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<KhoangThu> getKhoangThu(){
+    public List<ModelKhoanThu> getKhoangThu(){
 
-        List<KhoangThu> list=new ArrayList<>();
+        List<ModelKhoanThu> list=new ArrayList<>();
 
         String TruyVan=" SELECT * FROM " + CreateDatabase.TB_KHOANTHU;
 
         Cursor cursor=database.rawQuery(TruyVan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            KhoangThu khoangThu=new KhoangThu();
-            khoangThu.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_ID)));
-            khoangThu.setNgay(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_NGAY)));
-            khoangThu.setLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_LOAITHU)));
-            khoangThu.setMoTa(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_MOTA)));
-            khoangThu.setSoTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_SOTIEN)));
-            khoangThu.setTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_TAIKHOAN)));
-            list.add(khoangThu);
+            ModelKhoanThu modelKhoanThu =new ModelKhoanThu();
+            modelKhoanThu.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_ID)));
+            modelKhoanThu.setNgay(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_NGAY)));
+            modelKhoanThu.setLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_LOAITHU)));
+            modelKhoanThu.setMoTa(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_MOTA)));
+            modelKhoanThu.setSoTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_SOTIEN)));
+            modelKhoanThu.setTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_TAIKHOAN)));
+            list.add(modelKhoanThu);
             cursor.moveToNext();
         }
         //Log.d("checkNao", String.valueOf(list));
         return list;
     }
 
-    public List<KhoangThu> getKhoangThuTheoNgayThangNam(String truyvan){
+    public List<ModelKhoanThu> getKhoangThuTheoNgayThangNam(String truyvan){
 
-        List<KhoangThu> list=new ArrayList<>();
+        List<ModelKhoanThu> list=new ArrayList<>();
 
         Cursor cursor=database.rawQuery(truyvan,null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            KhoangThu khoangThu=new KhoangThu();
-            khoangThu.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_ID)));
-            khoangThu.setNgay(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_NGAY)));
-            khoangThu.setLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_LOAITHU)));
-            khoangThu.setMoTa(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_MOTA)));
-            khoangThu.setSoTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_SOTIEN)));
-            khoangThu.setTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_TAIKHOAN)));
-            list.add(khoangThu);
+            ModelKhoanThu modelKhoanThu =new ModelKhoanThu();
+            modelKhoanThu.setId(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_ID)));
+            modelKhoanThu.setNgay(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_NGAY)));
+            modelKhoanThu.setLoaiThu(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_LOAITHU)));
+            modelKhoanThu.setMoTa(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_MOTA)));
+            modelKhoanThu.setSoTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_SOTIEN)));
+            modelKhoanThu.setTaiKhoan(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_KHOANTHU_TAIKHOAN)));
+            list.add(modelKhoanThu);
             cursor.moveToNext();
         }
         //Log.d("checkNao", String.valueOf(list));

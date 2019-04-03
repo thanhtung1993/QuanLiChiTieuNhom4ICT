@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-import com.example.quanlychitieu.Model.LoaiChi;
+import com.example.quanlychitieu.Model.ModelLoaiChi;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -19,14 +19,14 @@ import java.util.List;
 
 
 
-public class AdapterSpinnerChi extends ArrayAdapter<LoaiChi> {
+public class AdapterSpinnerChi extends ArrayAdapter<ModelLoaiChi> {
 
-    public List<LoaiChi> listData= new ArrayList<>();
+    public List<ModelLoaiChi> listData= new ArrayList<>();
     public Context context;
     public int resource;
 
 
-    public AdapterSpinnerChi(@NonNull Context context, int resource, @NonNull List<LoaiChi> objects) {
+    public AdapterSpinnerChi(@NonNull Context context, int resource, @NonNull List<ModelLoaiChi> objects) {
         super(context, resource, objects);
         this.context=context;
         this.resource=resource;

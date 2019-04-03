@@ -4,14 +4,14 @@ package com.example.quanlychitieu.Model;
  * Created by Develop on 5/4/2018.
  */
 
-public class KhoangThu {
+public class ModelKhoanThu {
     int Id;
     String Ngay,TaiKhoan,SoTien,MoTa,LoaiThu;
 
-    public KhoangThu() {
+    public ModelKhoanThu() {
     }
 
-    public KhoangThu(String ngay, String taiKhoan, String soTien, String moTa, String loaiThu) {
+    public ModelKhoanThu(String ngay, String taiKhoan, String soTien, String moTa, String loaiThu) {
         Ngay = ngay;
         TaiKhoan = taiKhoan;
         SoTien = soTien;

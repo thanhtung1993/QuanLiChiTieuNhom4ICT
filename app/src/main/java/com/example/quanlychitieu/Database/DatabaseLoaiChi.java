@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
-import com.example.quanlychitieu.Model.LoaiChi;
+import com.example.quanlychitieu.Model.ModelLoaiChi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,40 +24,40 @@ public class DatabaseLoaiChi {
         database=createDatabase.Open();
     }
 
-    public long AddItem(LoaiChi loaiChi)
+    public long AddItem(ModelLoaiChi modelLoaiChi)
     {
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_LOAICHI_NAMELOAICHI,loaiChi.getTenLoaiChi());
+        contentValues.put(CreateDatabase.TB_LOAICHI_NAMELOAICHI, modelLoaiChi.getTenLoaiChi());
         long check=database.insert(CreateDatabase.TB_LOAICHI,null,contentValues);
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<LoaiChi> getLoaiChi(){
+    public List<ModelLoaiChi> getLoaiChi(){
 
-        List<LoaiChi> list=new ArrayList<>();
+        List<ModelLoaiChi> list=new ArrayList<>();
 
         String TruyVan=" SELECT * FROM " + CreateDatabase.TB_LOAICHI;
 
         Cursor cursor=database.rawQuery(TruyVan,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            LoaiChi loaiChi=new LoaiChi();
-            loaiChi.setIdloaiChi(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_LOAICHI_ID)));
-            loaiChi.setTenLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_LOAICHI_NAMELOAICHI)));
-            list.add(loaiChi);
+            ModelLoaiChi modelLoaiChi =new ModelLoaiChi();
+            modelLoaiChi.setIdloaiChi(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_LOAICHI_ID)));
+            modelLoaiChi.setTenLoaiChi(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_LOAICHI_NAMELOAICHI)));
+            list.add(modelLoaiChi);
             cursor.moveToNext();
         }
 
         return list;
     }
-    public boolean UpdateLoaiChi(LoaiChi loaiChi){
+    public boolean UpdateLoaiChi(ModelLoaiChi modelLoaiChi){
 
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(CreateDatabase.TB_LOAICHI_NAMELOAICHI,(loaiChi.getTenLoaiChi()));
+        contentValues.put(CreateDatabase.TB_LOAICHI_NAMELOAICHI,(modelLoaiChi.getTenLoaiChi()));
 
-        long check=database.update(CreateDatabase.TB_LOAICHI,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " +loaiChi.getIdloaiChi(),null);
+        long check=database.update(CreateDatabase.TB_LOAICHI,contentValues,CreateDatabase.TB_LOAITHU_ID + " = " + modelLoaiChi.getIdloaiChi(),null);
 
         if(check !=0){
             return true;

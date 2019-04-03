@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.quanlychitieu.Database.DatabaseTaiKhoan;
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 import com.example.quanlychitieu.R;
 import com.example.quanlychitieu.ViewHolder.AdapterTaiKhoan;
 
@@ -31,8 +31,8 @@ public class NapTienVaoTaiKhoanFragment extends Fragment {
 
     RecyclerView recyclerView_TaiKhoan;
     DatabaseTaiKhoan databaseTaiKhoan;
-    TaiKhoan taiKhoan;
-    List<TaiKhoan> listTaiKhoan;
+    ModelTaiKhoan modelTaiKhoan;
+    List<ModelTaiKhoan> listModelTaiKhoan;
     RecyclerView.LayoutManager layoutManager;
     AdapterTaiKhoan adapter;
     EditText edtNameTK,edtSoTienTK;
@@ -48,7 +48,7 @@ public class NapTienVaoTaiKhoanFragment extends Fragment {
         layoutManager=new LinearLayoutManager(getContext());
         recyclerView_TaiKhoan.setLayoutManager(layoutManager);
         databaseTaiKhoan=new DatabaseTaiKhoan(getContext());
-        listTaiKhoan=new ArrayList<>();
+        listModelTaiKhoan =new ArrayList<>();
         btnAddTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,11 +91,11 @@ public class NapTienVaoTaiKhoanFragment extends Fragment {
     }
 
     private void btnAddNew() {
-        taiKhoan=new TaiKhoan(
+        modelTaiKhoan =new ModelTaiKhoan(
                 edtNameTK.getText().toString(),
                 edtSoTienTK.getText().toString()
         );
-        long check=databaseTaiKhoan.ThemTaiKhoan(taiKhoan);
+        long check=databaseTaiKhoan.ThemTaiKhoan(modelTaiKhoan);
         if(check>0){
             Toast.makeText(getContext(), "Thêm Thành Công!!!", Toast.LENGTH_SHORT).show();
             LoadTaiKhoan();
@@ -107,8 +107,8 @@ public class NapTienVaoTaiKhoanFragment extends Fragment {
     }
     public void LoadTaiKhoan() {
 //        String strtext = getArguments().getString("edttext");
-        listTaiKhoan=databaseTaiKhoan.getTaiKhoan();
-        adapter=new AdapterTaiKhoan(listTaiKhoan,getContext());
+        listModelTaiKhoan =databaseTaiKhoan.getTaiKhoan();
+        adapter=new AdapterTaiKhoan(listModelTaiKhoan,getContext());
         recyclerView_TaiKhoan.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();

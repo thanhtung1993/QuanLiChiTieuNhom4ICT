@@ -2,14 +2,14 @@ package com.example.quanlychitieu.Model;
 
 
 
-public class KhoangChi {
+public class ModelKhoanChi {
     int Id;
     String NgayChi,TaiKhoanChi,SoTienChi,MoTaChi,LoaiChi;
 
-    public KhoangChi() {
+    public ModelKhoanChi() {
     }
 
-    public KhoangChi(String ngayChi, String taiKhoanChi, String soTienChi, String moTaChi, String loaiChi) {
+    public ModelKhoanChi(String ngayChi, String taiKhoanChi, String soTienChi, String moTaChi, String loaiChi) {
         NgayChi = ngayChi;
         TaiKhoanChi = taiKhoanChi;
         SoTienChi = soTienChi;

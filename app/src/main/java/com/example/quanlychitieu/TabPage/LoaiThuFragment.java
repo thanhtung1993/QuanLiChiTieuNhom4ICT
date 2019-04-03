@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.quanlychitieu.Database.DatabaseLoaiThu;
-import com.example.quanlychitieu.Model.LoaiThu;
+import com.example.quanlychitieu.Model.ModelLoaiThu;
 import com.example.quanlychitieu.R;
 import com.example.quanlychitieu.ViewHolder.LoaiThuAdapter;
 
@@ -32,10 +32,10 @@ public class LoaiThuFragment extends Fragment {
     FloatingActionButton btnFab;
     Button btnAdd,btnHuy;
     EditText edtName;
-    LoaiThu loaiThu;
+    ModelLoaiThu modelLoaiThu;
     DatabaseLoaiThu databaseLoaiThu;
     LoaiThuAdapter adapter;
-    List<LoaiThu> listdata;
+    List<ModelLoaiThu> listdata;
 
     RecyclerView.LayoutManager layoutManager;
     @Nullable
@@ -93,8 +93,8 @@ public class LoaiThuFragment extends Fragment {
 
     private void AddNew() {
 //        loaiThu=new LoaiThu(edtName.getText().toString().trim());
-        loaiThu=new LoaiThu(edtName.getText().toString());
-        long chekc=databaseLoaiThu.AddItem(loaiThu);
+        modelLoaiThu =new ModelLoaiThu(edtName.getText().toString());
+        long chekc=databaseLoaiThu.AddItem(modelLoaiThu);
         if(chekc>0){
             LoadDataLoaiThu();
             Toast.makeText(getContext(), "Thêm Thành Công !", Toast.LENGTH_SHORT).show();

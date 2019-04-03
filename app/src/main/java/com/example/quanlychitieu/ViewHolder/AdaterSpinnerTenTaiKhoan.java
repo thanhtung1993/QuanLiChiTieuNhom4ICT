@@ -11,21 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-import com.example.quanlychitieu.Model.TaiKhoan;
+import com.example.quanlychitieu.Model.ModelTaiKhoan;
 import com.example.quanlychitieu.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdaterSpinnerTenTaiKhoan extends ArrayAdapter<TaiKhoan> {
+public class AdaterSpinnerTenTaiKhoan extends ArrayAdapter<ModelTaiKhoan> {
 
-    public List<TaiKhoan> listData = new ArrayList<>();
+    public List<ModelTaiKhoan> listData = new ArrayList<>();
     public Context context;
     public int resource;
 
 
-    public AdaterSpinnerTenTaiKhoan(@NonNull Context context, int resource, @NonNull List<TaiKhoan> objects) {
+    public AdaterSpinnerTenTaiKhoan(@NonNull Context context, int resource, @NonNull List<ModelTaiKhoan> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
