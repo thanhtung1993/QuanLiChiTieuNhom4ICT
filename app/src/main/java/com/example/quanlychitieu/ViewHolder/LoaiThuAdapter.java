@@ -110,7 +110,7 @@ public class LoaiThuAdapter  extends RecyclerView.Adapter<LoaiThuViewHolder>{
                 {
                     Toast.makeText(context, "Item Edited", Toast.LENGTH_SHORT).show();
                     listData.clear();
-                    listData=databaseLoaiThu.getLoaiThu();
+                    listData=databaseLoaiThu.layLoaiThu();
                     loaiThuAdapter.notifyDataSetChanged();
                 }else
                     Toast.makeText(context, "Failure!!!", Toast.LENGTH_SHORT).show();
@@ -131,7 +131,7 @@ public class LoaiThuAdapter  extends RecyclerView.Adapter<LoaiThuViewHolder>{
         if(check){
             Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show();
             listData.clear();
-            listData=databaseLoaiThu.getLoaiThu();
+            listData=databaseLoaiThu.layLoaiThu();
             loaiThuAdapter.notifyDataSetChanged();
         }
         else

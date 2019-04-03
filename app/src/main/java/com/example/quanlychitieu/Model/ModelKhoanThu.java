@@ -1,8 +1,6 @@
 package com.example.quanlychitieu.Model;
 
-/**
- * Created by Develop on 5/4/2018.
- */
+
 
 public class ModelKhoanThu {
     int Id;

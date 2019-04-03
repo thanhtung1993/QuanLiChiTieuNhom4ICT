@@ -111,7 +111,7 @@ public class LoaiChiAdapter  extends RecyclerView.Adapter<LoaiChiViewHolder>{
                 {
                     Toast.makeText(context, "Item Edited", Toast.LENGTH_SHORT).show();
                     listData.clear();
-                    listData=databaseLoaiChi.getLoaiChi();
+                    listData=databaseLoaiChi.layLoaiChi();
                     loaiChiAdapter.notifyDataSetChanged();
                 }else
                     Toast.makeText(context, "Failure!!!", Toast.LENGTH_SHORT).show();
@@ -132,7 +132,7 @@ public class LoaiChiAdapter  extends RecyclerView.Adapter<LoaiChiViewHolder>{
         if(check){
             Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show();
             listData.clear();
-            listData=databaseLoaiChi.getLoaiChi();
+            listData=databaseLoaiChi.layLoaiChi();
             loaiChiAdapter.notifyDataSetChanged();
         }
         else

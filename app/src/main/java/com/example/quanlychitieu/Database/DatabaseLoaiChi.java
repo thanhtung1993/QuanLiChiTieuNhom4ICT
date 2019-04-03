@@ -33,7 +33,7 @@ public class DatabaseLoaiChi {
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<ModelLoaiChi> getLoaiChi(){
+    public List<ModelLoaiChi> layLoaiChi(){
 
         List<ModelLoaiChi> list=new ArrayList<>();
 

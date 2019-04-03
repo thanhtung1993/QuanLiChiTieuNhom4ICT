@@ -103,7 +103,7 @@ public class LoaiChiFragment extends Fragment {
     }
 
     private void LoadDataLoaiChi() {
-        listdata=databaseLoaiChi.getLoaiChi();
+        listdata=databaseLoaiChi.layLoaiChi();
         adapter=new LoaiChiAdapter(listdata,getContext());
         recyclerView_LoaiChi.setAdapter(adapter);
         adapter.notifyDataSetChanged();

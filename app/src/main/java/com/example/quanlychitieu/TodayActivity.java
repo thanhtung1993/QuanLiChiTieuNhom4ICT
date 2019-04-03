@@ -52,14 +52,14 @@ public class TodayActivity extends Fragment {
         //mChart=view.findViewById(R.id.chart);
 
         tongThu=0;
-        listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.Today);
+        listTodayThu=databaseKhoanThu.layKhoanThuTheoNgayThangNam(databaseKhoanThu.Today);
         Log.d("ToDay Khoản Thu", String.valueOf(listTodayThu.size()));
         for (ModelKhoanThu modelKhoanThu : listTodayThu){
             tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
-        listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.Today);
+        listTodayChi=databaseKhoanChi.layKhoanChiTheoNgayThangNam(databaseKhoanChi.Today);
         Log.d("Today Khoản Chi", String.valueOf(listTodayChi.size()));
         for (ModelKhoanChi modelKhoanChi : listTodayChi){
 

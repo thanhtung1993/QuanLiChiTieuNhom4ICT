@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ThuFragment hienThithu = new ThuFragment();
                 tranHienThiThu.replace(R.id.content, hienThithu);
                 tranHienThiThu.commit();
-                txtGetTiltle.setText("Khoảng Thu");
+                txtGetTiltle.setText("Khoản Thu");
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 break;
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ChiFragment hienThichi = new ChiFragment();
                 tranHienThiChi.replace(R.id.content, hienThichi);
                 tranHienThiChi.commit();
-                txtGetTiltle.setText("Khoảng Chi");
+                txtGetTiltle.setText("Khoản Chi");
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 break;

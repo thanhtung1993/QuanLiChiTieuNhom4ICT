@@ -91,7 +91,7 @@ public class KhoanThuFragment extends Fragment {
 
         listModelTaiKhoan =databaseTaiKhoan.getTaiKhoan();
 
-        listdata=databaseLoaiThu.getLoaiThu();
+        listdata=databaseLoaiThu.layLoaiThu();
 
         Log.d("size", String.valueOf(listdata.size()));
         Log.d("size", listModelTaiKhoan.size()+"");
@@ -228,7 +228,7 @@ public class KhoanThuFragment extends Fragment {
     }
 
     private void LoadListKhoanThu() {
-        listModelKhoanThu =databaseKhoanThu.getKhoangThu();
+        listModelKhoanThu =databaseKhoanThu.layKhoanThu();
         apdater=new KhoanThuApdater(listModelKhoanThu,getContext());
         recyclerView_KhoangThu.setAdapter(apdater);
         apdater.notifyDataSetChanged();

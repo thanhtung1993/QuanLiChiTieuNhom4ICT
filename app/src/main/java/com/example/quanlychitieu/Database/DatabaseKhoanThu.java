@@ -51,7 +51,7 @@ public class DatabaseKhoanThu  {
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<ModelKhoanThu> getKhoangThu(){
+    public List<ModelKhoanThu> layKhoanThu(){
 
         List<ModelKhoanThu> list=new ArrayList<>();
 
@@ -70,11 +70,11 @@ public class DatabaseKhoanThu  {
             list.add(modelKhoanThu);
             cursor.moveToNext();
         }
-        //Log.d("checkNao", String.valueOf(list));
+        Log.d("checkNao", String.valueOf(list));
         return list;
     }
 
-    public List<ModelKhoanThu> getKhoangThuTheoNgayThangNam(String truyvan){
+    public List<ModelKhoanThu> layKhoanThuTheoNgayThangNam(String truyvan){
 
         List<ModelKhoanThu> list=new ArrayList<>();
 

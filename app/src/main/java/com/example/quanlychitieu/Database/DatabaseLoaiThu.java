@@ -34,7 +34,7 @@ public class DatabaseLoaiThu  {
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<ModelLoaiThu> getLoaiThu(){
+    public List<ModelLoaiThu> layLoaiThu(){
 
         List<ModelLoaiThu> list=new ArrayList<>();
 

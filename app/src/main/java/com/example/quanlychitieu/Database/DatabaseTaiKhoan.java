@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 import com.example.quanlychitieu.Model.ModelTaiKhoan;
@@ -53,7 +54,7 @@ public class DatabaseTaiKhoan {
             list.add(modelTaiKhoan);
             cursor.moveToNext();
         }
-        //Log.d("checkNao", String.valueOf(list));
+        Log.d("checkNao", String.valueOf(list));
         return list;
     }
 

@@ -52,14 +52,14 @@ public class ThisYearActitvity extends Fragment {
        // mChart=view.findViewById(R.id.chartYear);
 
         tongThu=0;
-        listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.ThisYear);
+        listTodayThu=databaseKhoanThu.layKhoanThuTheoNgayThangNam(databaseKhoanThu.ThisYear);
         Log.d("Year Khoản Thu", String.valueOf(listTodayThu.size()));
         for (ModelKhoanThu modelKhoanThu : listTodayThu){
             tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
-        listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.ThisYear);
+        listTodayChi=databaseKhoanChi.layKhoanChiTheoNgayThangNam(databaseKhoanChi.ThisYear);
         Log.d("Year Khoản Chi",listTodayChi.size()+"");
         for (ModelKhoanChi modelKhoanChi : listTodayChi){
 

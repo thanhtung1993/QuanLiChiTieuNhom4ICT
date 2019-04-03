@@ -89,7 +89,7 @@ public class KhoanChiFragment extends Fragment {
         listModelKhoanChi =new ArrayList<>();
 
         listModelTaiKhoan =databaseTaiKhoan.getTaiKhoan();
-        listdata=databaseLoaiChi.getLoaiChi();
+        listdata=databaseLoaiChi.layLoaiChi();
 
         btnFabKhoanChi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +199,7 @@ public class KhoanChiFragment extends Fragment {
                     Toast.makeText(getContext(), "Vui Lòng Nhập Số Tiền", Toast.LENGTH_SHORT).show();
                 }
                 if(err==true){
-                    long check=databaseKhoanChi.AddKhoancHI(modelKhoanChi);
+                    long check=databaseKhoanChi.ThemKhoanChi(modelKhoanChi);
                     if (check>0) {
                         for (final ModelTaiKhoan tk : listModelTaiKhoan) {
                             if (tk.getId() == pos) {
@@ -223,7 +223,7 @@ public class KhoanChiFragment extends Fragment {
 
 
     private void LoadListKhoanChi() {
-        listModelKhoanChi =databaseKhoanChi.getKhoangChi();
+        listModelKhoanChi =databaseKhoanChi.layKhoanChi();
         apdater=new KhoanChiAdapter(listModelKhoanChi,getContext());
         recyclerView_KhoangChi.setAdapter(apdater);
         apdater.notifyDataSetChanged();

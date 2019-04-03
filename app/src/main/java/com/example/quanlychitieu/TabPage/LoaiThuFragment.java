@@ -104,7 +104,7 @@ public class LoaiThuFragment extends Fragment {
     }
 
     private void LoadDataLoaiThu() {
-        listdata=databaseLoaiThu.getLoaiThu();
+        listdata=databaseLoaiThu.layLoaiThu();
         adapter=new LoaiThuAdapter(listdata,getContext());
         recyclerView_LoaiThu.setAdapter(adapter);
         adapter.notifyDataSetChanged();

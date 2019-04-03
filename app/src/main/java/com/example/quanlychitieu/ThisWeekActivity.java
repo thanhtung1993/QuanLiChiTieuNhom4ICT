@@ -49,14 +49,14 @@ public class ThisWeekActivity extends Fragment {
       //  mChart=view.findViewById(R.id.chartWeek);
 
         tongThu=0;
-        listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.ThisWeek);
+        listTodayThu=databaseKhoanThu.layKhoanThuTheoNgayThangNam(databaseKhoanThu.ThisWeek);
         Log.d("Week Khoản Thu", String.valueOf(listTodayThu.size()));
         for (ModelKhoanThu modelKhoanThu : listTodayThu){
             tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
-        listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.ThisWeek);
+        listTodayChi=databaseKhoanChi.layKhoanChiTheoNgayThangNam(databaseKhoanChi.ThisWeek);
         Log.d("Week Khoản Chi", String.valueOf(listTodayChi.size()));
         for (ModelKhoanChi modelKhoanChi : listTodayChi){
 

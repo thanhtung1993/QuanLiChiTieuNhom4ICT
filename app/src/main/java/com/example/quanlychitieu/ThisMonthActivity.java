@@ -51,14 +51,14 @@ public class ThisMonthActivity extends Fragment {
        // mChart=view.findViewById(R.id.chartMonth);
 
         tongThu=0;
-        listTodayThu=databaseKhoanThu.getKhoangThuTheoNgayThangNam(databaseKhoanThu.ThisMonth);
+        listTodayThu=databaseKhoanThu.layKhoanThuTheoNgayThangNam(databaseKhoanThu.ThisMonth);
         Log.d("Month Khoản Thu", String.valueOf(listTodayThu.size()));
         for (ModelKhoanThu modelKhoanThu : listTodayThu){
             tongThu+=(Float.parseFloat(modelKhoanThu.getSoTien()));
         }
 
         tongChi=0;
-        listTodayChi=databaseKhoanChi.getKhoangChiTheoNgayThangNam(databaseKhoanChi.ThisMonth);
+        listTodayChi=databaseKhoanChi.layKhoanChiTheoNgayThangNam(databaseKhoanChi.ThisMonth);
         Log.d("Month Khoản Chi", String.valueOf(listTodayChi.size()));
         for (ModelKhoanChi modelKhoanChi : listTodayChi){
 

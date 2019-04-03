@@ -39,7 +39,7 @@ public class DatabaseKhoanChi {
     public static String ThisMonth="SELECT * FROM "+CreateDatabase.TB_KHOANCHI+" WHERE strftime('%Y',"+CreateDatabase.TB_KHOANCHI_NGAY+") = strftime('%Y',date('now')) " +
             "AND  strftime('%m',"+CreateDatabase.TB_KHOANCHI_NGAY+") = strftime('%m',date('now'))";
 
-    public long AddKhoancHI(ModelKhoanChi modelKhoanChi)
+    public long ThemKhoanChi(ModelKhoanChi modelKhoanChi)
     {
         ContentValues contentValues=new ContentValues();
 
@@ -53,7 +53,7 @@ public class DatabaseKhoanChi {
         Log.d(TB, String.valueOf(check));
         return check;
     }
-    public List<ModelKhoanChi> getKhoangChi(){
+    public List<ModelKhoanChi> layKhoanChi(){
 
         List<ModelKhoanChi> modelKhoanChiList=new ArrayList<>();
 
@@ -76,7 +76,7 @@ public class DatabaseKhoanChi {
         return modelKhoanChiList;
     }
 
-    public List<ModelKhoanChi> getKhoangChiTheoNgayThangNam(String truyvan){
+    public List<ModelKhoanChi> layKhoanChiTheoNgayThangNam(String truyvan){
 
         List<ModelKhoanChi> list=new ArrayList<>();
         Cursor cursor=database.rawQuery(truyvan,null);
